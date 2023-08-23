@@ -1,16 +1,22 @@
-# This is a sample Python script.
+from tkinter import *
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+window = Tk()
+window.title("My First GUI Program With Tkinter")
+window.minsize(width=500, height=300)
 
+# Label
+my_label = Label(text="I am a Label", font=("Times New Roman", 24))
+my_label.pack()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+# Button
+def button_clicked():
+    my_label.config(text=input.get())
 
+my_button = Button(text="Click me", command=button_clicked)
+my_button.pack()
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# Entry
+input = Entry(width=10)
+input.pack()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+window.mainloop()
