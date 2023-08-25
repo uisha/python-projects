@@ -70,28 +70,22 @@ def save():
 
 
 # ---------------------------- FIND PASSWORD ------------------------------- #
-def search_data(data):
-    try:
-        website = web_input.get().capitalize()
-        account = data.get(website)
-        if account is None:
-            raise KeyError("No such key exists")
-    except KeyError:
-        messagebox.showerror(message="No details for the website exists")
-    else:
-        email = account.get("email")
-        password = account.get("password")
-        messagebox.showinfo(message=f"Website: {website}\n"
-                                    f"Email/Username: {email}\n"
-                                    f"Password: {password}")
 def find_password():
+    website = web_input.get().capitalize()
     try:
         with open("data.json", "r") as data_file:
             data = json.load(data_file)
     except FileNotFoundError:
         messagebox.showerror(message="No Data File Found")
     else:
-        search_data(data)
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(message=f"Website: {website}\n"
+                                        f"Email/Username: {email}\n"
+                                        f"Password: {password}")
+        else:
+            messagebox.showerror(message="No details for the website exists")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
